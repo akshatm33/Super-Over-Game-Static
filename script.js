@@ -19,7 +19,7 @@ var turn = 1;
 const possibleOutcomes = [0, 1, 2, 3, 4, 6, "W"];
 
 function gameOver() {
-  gameOverAudio.play();
+  gameOverAudio.play(); 
   if (team1Score > team2Score) alert("IND wins");
   if (team2Score > team1Score) alert("PAK wins");
   if (team2Score === team1Score) alert("It is another superover!");
@@ -31,7 +31,7 @@ function updateScore() {
   $team2Score.textContent = team2Score;
   $team2Wickets.textContent = team2Wickets;
 }
-
+//reload the cureent web page
 resetButton.onclick = () => {
   window.location.reload();
 };
@@ -43,17 +43,14 @@ strikeButton.onclick = () => {
   strikeAudio.play();
 
   //generate random strike value
-  const randomElement =
-    possibleOutcomes[Math.floor(Math.random() * possibleOutcomes.length)];
+  const randomElement = possibleOutcomes[Math.floor(Math.random() * possibleOutcomes.length)];
 
   //second batting
   if (turn === 2) {
     //increase ball count
     team2BallsFaced++;
     //update score for the ball
-    document.querySelector(
-      `#team2-superover div:nth-child(${team2BallsFaced})`
-    ).textContent = randomElement;
+    document.querySelector(`#team2-superover div:nth-child(${team2BallsFaced})`).textContent = randomElement;
     // if wicket, update wickets variable
     if (randomElement === "W") {
       team2Wickets++;
@@ -75,9 +72,7 @@ strikeButton.onclick = () => {
 
   if (turn === 1) {
     team1BallsFaced++;
-    document.querySelector(
-      `#team1-superover div:nth-child(${team1BallsFaced})`
-    ).textContent = randomElement;
+    document.querySelector(`#team1-superover div:nth-child(${team1BallsFaced})`).textContent = randomElement;
     if (randomElement === "W") {
       team1Wickets++;
     } else {
